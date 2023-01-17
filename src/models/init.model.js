@@ -1,16 +1,24 @@
-const TodosCategories = require('./todos-categories.model');
-const Todos = require('./todos.models');
-const Users = require ('./users.model');
+const Users = require("./users.model");
+const Courses = require("./courses.models");
+const Courses = require("./courses.models");
+const CoursesCourses = require("./courses-courses.models");
+
 const initModels = () => {
-  
-  Todos.belongsTo(Users, {as:'author', foreignKey:'user_id'});
-  Users.hasMany(Todos, {as:"task", foreignKey:'user_id'});
+ 
+  Courses.belongsTo(Users, { as: "author", foreignKey: "user_id" });
+  Users.hasMany(Courses, { as: "course", foreignKey: "user_id" });
 
-  TodosCategories.belongsTo(Todos, {as:"task", foreignKey:'todo_id'});
-  Todos.hasMany(TodosCategories, {as:"category", foreignKey:'todo_id'});
+  CoursesCourses.belongsTo(Courses, { as: "course", foreignKey: "course_id" });
+  Courses.hasMany(CoursesCourses, { as: "courses", foreignKey: "course_id" });
 
-  TodosCategories.belongsTo(Categories, {as:"category", foreignKey:'category_id'});
-  Categories.hasMany(TodosCategories, {as:"task", foreignKey:'category_id'});
-}
+  CoursesCourses.belongsTo(Courses, {
+    as: "course",
+    foreignKey: "course_id",
+  });
+  Courses.hasMany(CoursesCourses, {
+    as: "course",
+    foreignKey: "course_id",
+  });
+};
 
 module.exports = initModels;
